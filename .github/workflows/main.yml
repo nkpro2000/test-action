@@ -12,7 +12,18 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup Python
-        uses: actions/setup-python@v1.2.0
-      - name: update README.md with content
-        run: pwd && ls -a -R
+    - uses: actions/checkout@v1
+    - name: update README.md with content
+      run: python ./.github/workflows/updateREADME.py
+    - name: switching from HTTPS to SSH
+      run: git remote set-url origin ${{ secrets.ssh }}
+    - name: check for changes
+      run: git status
+    - name: stage changed files
+      run: git add .
+    - name: commit changed files
+      run: git commit -m "Updated content in README.md"
+    - name: fetch from master
+      run: git fetch origin master
+    - name: push code to master
+      run: git push origin HEAD:master
