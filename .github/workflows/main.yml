@@ -12,5 +12,9 @@ jobs:
   update:
     runs-on: ubuntu-latest
     steps:
-      - name: 'update README.md with content'
-        run: sh .github/workflows/updateREADME.sh
+      - name: Setup Python
+        uses: actions/setup-python@v1.2.0
+      - name: install 're' python module
+        run: python -m pip install re 
+      - name: update README.md with content
+        run: python .github/workflows/updateREADME.py
