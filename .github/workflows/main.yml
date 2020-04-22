@@ -1,0 +1,16 @@
+name: 'GitHub Actions To update content in README.md'
+
+on: 
+  push:
+    paths:
+      - 'content'
+  pull_request:
+    paths:
+      - 'content'
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'update README.md with content'
+        run: sh .github/workflows/updateREADME.sh
