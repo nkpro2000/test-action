@@ -15,4 +15,4 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v1.2.0
       - name: update README.md with content
-        run: python .github/workflows/updateREADME.py
+        run: pwd
